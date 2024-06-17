@@ -1,7 +1,8 @@
 
 */build
 */node_modules
-file-backend/uploads
+*/public
+*/uploads
 
 */.env
 */package-lock.json
