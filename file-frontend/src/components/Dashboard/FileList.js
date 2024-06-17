@@ -81,10 +81,14 @@ const handleDownload = async (filename) => {
       <ul>
         {files.map((file) => (
           <li key={file}>
-            {file}
-            <button onClick={() => handleDownload(file)}>Download</button>
-            <button onClick={() => setSelectedFile(file)}>Rename</button>
-            <button onClick={() => handleDelete(file)}>Delete</button>
+            <div className="file-info">
+              {file}
+            </div>
+            <div className="file-actions">
+              <button onClick={() => handleDownload(file)}>Download</button>
+              <button onClick={() => setSelectedFile(file)}>Rename</button>
+              <button onClick={() => handleDelete(file)}>Delete</button>
+            </div>
             {selectedFile === file && (
               <div className="rename-container">
                 <input

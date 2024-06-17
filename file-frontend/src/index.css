@@ -61,8 +61,16 @@ li:nth-child(odd) {
   background: #e9e9e9;
 }
 
-li button {
-  margin-left: 10px;
+li .file-info {
+  flex: 1;
+}
+
+li .file-actions {
+  display: flex;
+  gap: 10px;
+}
+
+li .file-actions button {
   padding: 5px 10px;
   border: none;
   background: #007bff;
@@ -71,7 +79,7 @@ li button {
   cursor: pointer;
 }
 
-li button:hover {
+li .file-actions button:hover {
   background: #0056b3;
 }
 
