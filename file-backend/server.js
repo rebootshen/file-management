@@ -18,15 +18,28 @@ const app = express();
 app.use(express.json());
 
 
-//Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+// Connect to MongoDB
+// mongoose.connect(process.env.MONGO_URI, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
+
+// Connect to MongoDB
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.error('MongoDB connection error:', err));
+
+// mongoose.connect(process.env.MONGO_URI)
+//   .then(async () => {
+//     console.log('MongoDB connected');
+//     await createDefaultUser(); // Create default user
+//   })
+//   .catch(err => console.error('MongoDB connection error:', err));
+
 
 // Routes
 app.use('/api/users', require('./routes/user'));
-
+app.use('/api/files', require('./routes/file'));
 
 // Example of protected route
 app.get('/api/protected', auth, authorize('admin', 'editor'), (req, res) => {
