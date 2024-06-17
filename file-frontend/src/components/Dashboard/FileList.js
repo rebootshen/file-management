@@ -86,7 +86,7 @@ const handleDownload = async (filename) => {
             <button onClick={() => setSelectedFile(file)}>Rename</button>
             <button onClick={() => handleDelete(file)}>Delete</button>
             {selectedFile === file && (
-              <div>
+              <div className="rename-container">
                 <input
                   type="text"
                   value={newName}
