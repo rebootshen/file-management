@@ -1,6 +1,3 @@
-
-
-
 // server.js
 const express = require('express');
 const mongoose = require('mongoose');
@@ -14,7 +11,6 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const errorHandler = require('./middle/errorHandler');
 const rateLimiter = require('./middle/rateLimiter');
-const createDefaultUser = require('./createDefaultUser');
 
 // Load environment variables
 dotenv.config();
@@ -31,23 +27,9 @@ app.use(morgan('combined'));
 app.use(rateLimiter);
 
 // Connect to MongoDB
-// mongoose.connect(process.env.MONGO_URI, {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
-
-// Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.error('MongoDB connection error:', err));
-
-// mongoose.connect(process.env.MONGO_URI)
-//   .then(async () => {
-//     console.log('MongoDB connected');
-//     await createDefaultUser(); // Create default user
-//   })
-//   .catch(err => console.error('MongoDB connection error:', err));
-
 
 // Routes
 app.use('/api/users', require('./routes/user'));

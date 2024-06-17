@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./file-backend
+    ports:
+      - "5001:5001"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/file_management
+      - JWT_SECRET=test123home
+    depends_on:
+      - mongo
+
+  frontend:
+    build: ./file-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+  mongo:
+    image: mongo
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
