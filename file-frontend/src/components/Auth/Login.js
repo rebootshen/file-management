@@ -1,6 +1,6 @@
 // src/components/Auth/Login.js
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import api from '../../api';
 import './Auth.css'; // Import Auth styles
 import Notification from '../Notification/Notification';
@@ -46,6 +46,9 @@ const Login = () => {
         required
       />
       <button type="submit">Login</button>
+      <p>
+          Don't have an account? <Link to="/register">Register here</Link>
+      </p>
     </form>
   );
 };
