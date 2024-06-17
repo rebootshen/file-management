@@ -1,11 +1,14 @@
 // src/components/Dashboard/FileList.js
 import React, { useEffect, useState } from 'react';
 import api from '../../api';
+import Notification from '../Notification/Notification';
+import '../Notification/Notification.css';
 
 const FileList = () => {
   const [files, setFiles] = useState([]);
   const [newName, setNewName] = useState('');
   const [selectedFile, setSelectedFile] = useState(null);
+  const [notification, setNotification] = useState({ message: '', type: '' });
 
   const fetchFiles = async () => {
     try {
@@ -13,6 +16,7 @@ const FileList = () => {
       setFiles(response.data);
     } catch (error) {
       console.error(error);
+      setNotification({ message: 'Failed to fetch files', type: 'error' });
     }
   };
 
@@ -24,8 +28,10 @@ const FileList = () => {
     try {
       await api.delete(`/files/${filename}`);
       fetchFiles();
+      setNotification({ message: 'File deleted successfully', type: 'success' });
     } catch (error) {
       console.error(error);
+      setNotification({ message: 'Failed to delete file', type: 'error' });
     }
   };
 
@@ -35,8 +41,10 @@ const FileList = () => {
       fetchFiles();
       setNewName('');
       setSelectedFile(null);
+      setNotification({ message: 'File renamed successfully', type: 'success' });
     } catch (error) {
       console.error(error);
+      setNotification({ message: 'Failed to rename file', type: 'error' });
     }
   };
 
@@ -57,14 +65,19 @@ const handleDownload = async (filename) => {
       document.body.appendChild(link);
       link.click();
       link.parentNode.removeChild(link);
+      setNotification({ message: 'File downloaded successfully', type: 'success' });
     } catch (error) {
       console.error(error);
+      setNotification({ message: 'Failed to download file', type: 'error' });
     }
   };
 
   return (
     <div>
       <h2>Files</h2>
+      {notification.message && (
+        <Notification message={notification.message} type={notification.type} />
+      )}
       <ul>
         {files.map((file) => (
           <li key={file}>
