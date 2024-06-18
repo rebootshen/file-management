@@ -7,6 +7,15 @@ const File = require('../models/File'); // Import the File model
 
 const uploadFile = (req, res) => {
   res.json({ message: 'File uploaded successfully', file: req.file });
+  //console.log(req.file)
+  //console.log(req.file.filename)
+
+  fs.rename(path.join('uploads', req.file.filename), path.join('uploads', req.file.originalname), (err) => {
+    if (err) {
+      console.log('Unable to rename file' );
+    }
+    console.log( 'File renamed successfully' );
+  });
 };
 
 const getFiles = (req, res) => {
