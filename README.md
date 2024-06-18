@@ -69,7 +69,7 @@ PORT=5001
 
 2. Create a .env.test file in the file-backend directory for testing purposes:
 ```bash
-MONGO_URI=mongodb://localhost:27017/file-management-test
+MONGO_URI=mongodb://localhost:27017/testdb
 JWT_SECRET=your_jwt_secret
 PORT=5002
 ```
@@ -98,6 +98,7 @@ Pull Docker images:
 ```bash
     docker pull mongo
     docker pull node:20
+```
 
 Build the Docker images:
 ```bash
@@ -108,7 +109,7 @@ Start the containers:
 ```bash
     docker-compose up
 ```
-The application should now be running at http://localhost:3000 and the backend at http://localhost:5000.
+The application should now be running at http://localhost:3000 and the backend at http://localhost:5001.
 
 
 ## Testing
