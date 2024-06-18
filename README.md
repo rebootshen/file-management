@@ -36,7 +36,7 @@ This is a file management application built with React for the frontend and Node
 
 ### Prerequisites
 
-- Node.js (v14 or higher, tested under v20)
+- Node.js (v20 or higher, tested under v20)
 - npm or yarn
 - MongoDB
 
