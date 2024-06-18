@@ -109,7 +109,7 @@ Start the containers:
 ```bash
     docker-compose up
 ```
-The application should now be running at http://localhost:3000 and the backend at http://localhost:5001.
+The application should now be running at http://localhost:3000 and the backend at http://localhost:5001, mongdb at mongodb://127.0.0.1:27018.
 
 
 ## Testing
