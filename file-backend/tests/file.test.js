@@ -76,7 +76,8 @@ describe('File Management', () => {
 
     expect(res.statusCode).toEqual(200);
     expect(res.body).toHaveProperty('file');
-    fileId = res.body.file.filename;
+    //fileId = res.body.file.filename;
+    fileId = res.body.file.originalname;
     console.log(fileId)
   });
 
