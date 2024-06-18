@@ -33,12 +33,18 @@ const updateFile = (req, res) => {
 const deleteFile = (req, res) => {
   const { id } = req.params;
 
-  fs.unlink(path.join('uploads', id), (err) => {
-    if (err) {
-      return res.status(500).json({ message: 'Unable to delete file' });
-    }
-    res.json({ message: 'File deleted successfully' });
-  });
+  try {
+    fs.unlink(path.join('uploads', id), (err) => {
+      if (err) {
+        console.log('Error deleting file from filesystem:', err);
+        return res.status(500).json({ message: 'Unable to delete file' });
+      }
+      res.json({ message: 'File deleted successfully' });
+    });
+  } catch (err) {
+    console.log('Server error:', err);
+    res.status(500).json({ message: 'Server error' });
+  }
 };
 
 const downloadFile = (req, res) => {

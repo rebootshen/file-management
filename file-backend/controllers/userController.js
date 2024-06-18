@@ -6,10 +6,12 @@ const User = require('../models/User');
 const registerUser = async (req, res) => {
   const { name, email, password, role } = req.body;
 
-  console.log("============1=============")
+  
 
   try {
     let user = await User.findOne({ email });
+    console.log(email)
+    console.log(user)
     if (user) {
       return res.status(400).json({ message: 'User already exists' });
     }
@@ -32,6 +34,7 @@ const registerUser = async (req, res) => {
       res.json({ token });
     });
   } catch (err) {
+    console.log('Server error:', err);
     res.status(500).json({ message: 'Server error' });
   }
 };

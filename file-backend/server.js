@@ -44,6 +44,12 @@ app.get('/api/protected', auth, authorize('admin', 'editor'), (req, res) => {
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5001;
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+const closeServer = () => {
+  server.close();
+};
+
+module.exports = { app, closeServer }; // Export the app for testing
