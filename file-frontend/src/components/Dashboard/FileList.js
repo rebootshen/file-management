@@ -67,7 +67,7 @@ const handleDownload = async (filename) => {
       link.parentNode.removeChild(link);
       setNotification({ message: 'File downloaded successfully', type: 'success' });
     } catch (error) {
-      console.error(error);
+      //console.error(error);
       setNotification({ message: 'Failed to download file', type: 'error' });
     }
   };
