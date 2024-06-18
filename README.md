@@ -127,24 +127,19 @@ npm test
 
 ## API Endpoints
 ### User Authentication
+```bash
 POST /api/users/register: Register a new user
 POST /api/users/login: Login a user
+```
 
 ### File Management
+```bash
 GET /api/files: Get the list of files
 POST /api/files/upload: Upload a file
 PUT /api/files/:filename: Rename a file
 DELETE /api/files/:filename: Delete a file
 GET /api/files/signed-url/:filename: Get a signed URL for downloading a file
-
-## Docker
-docker pull mongo
-docker pull node:20
-
-docker compose build
-docker compose up
-
-
+```
 ## Contributing
 Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
 
