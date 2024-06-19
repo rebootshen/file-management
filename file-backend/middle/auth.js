@@ -19,7 +19,7 @@ const auth = async (req, res, next) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = await User.findById(decoded.id).select('-password');
     if (!req.user) {
-      console.log('Access denied: User not found');
+      console.log('Access denied: User not found:' + decoded.id);
       return res.status(403).json({ message: 'Access denied' });
     }
     next();

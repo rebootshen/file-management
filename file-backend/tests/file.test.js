@@ -99,6 +99,7 @@ describe('File Management', () => {
       .set('Authorization', `Bearer ${token}`)
       .send({ newName });
     
+    console.log(fileId + " " + newName)
     console.log(res.body);  // Log the response body for debugging
 
     expect(res.statusCode).toEqual(200);

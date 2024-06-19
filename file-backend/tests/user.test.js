@@ -35,6 +35,7 @@ describe('User Authentication', () => {
         name: 'Test User',
         email: 'testuser1@example.com',
         password: 'password123',
+        role: 'admin'
       });
     console.log(res.body);  // Log the response body for debugging
     

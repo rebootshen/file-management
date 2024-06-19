@@ -7,12 +7,18 @@ const { param, body, validationResult } = require('express-validator');
 
 // Helper function to validate filenames
 const isValidFilename = (filename) => /^[a-zA-Z0-9-_]+\.(jpg|jpeg|png|pdf|txt|doc|docx)$/i.test(filename);
+const isValidName = (name) => /^[\.]?[a-zA-Z0-9-_]+$/i.test(name);
+
 
 const uploadFile = (req, res) => {
   const { filename, originalname } = req.file;
 
   if (!isValidFilename(originalname)) {
-    return res.status(400).json({ message: 'Invalid file name' });
+    return res.status(400).json({ message: 'Invalid original file name' });
+  }
+
+  if (!isValidName(filename)) {
+    return res.status(400).json({ message: 'Invalid file name '+filename });
   }
 
   fs.rename(path.join('uploads', filename), path.join('uploads', originalname), (err) => {
@@ -51,6 +57,10 @@ const updateFile = [
       return res.status(400).json({ message: 'Invalid new file name' });
     }
 
+    if (!(isValidName(id)||isValidFilename(id))) {
+      return res.status(400).json({ message: 'Invalid file name '+id });
+    }
+
     fs.rename(path.join('uploads', id), path.join('uploads', newName), (err) => {
       if (err) {
         return res.status(500).json({ message: 'Unable to rename file '+id+' to '+newName });
@@ -71,7 +81,7 @@ const deleteFile = [
 
     const { id } = req.params;
 
-    if (!isValidFilename(id)) {
+    if (!(isValidFilename(id)||isValidName(id))) {
       return res.status(400).json({ message: 'Invalid file id' });
     }
 
