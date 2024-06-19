@@ -53,7 +53,7 @@ const updateFile = [
 
     fs.rename(path.join('uploads', id), path.join('uploads', newName), (err) => {
       if (err) {
-        return res.status(500).json({ message: 'Unable to rename file' });
+        return res.status(500).json({ message: 'Unable to rename file '+id+' to '+newName });
       }
       res.json({ message: 'File renamed successfully' });
     });
